@@ -12,17 +12,28 @@ def check_win(user, computer):
 def play(x):
     user_score = 0
     computer_score = 0
-    for i in range(x):
-        computer = random.choice(["r", "p", "s"])
-        user = input("Enter r: rock, p: paper, s: scissor: ")
+    i = x
+    moves = ["r", "p", "s"]
+    while i:
+        computer = random.choice(moves)
+        
+        while True:
+            user = input("Enter r: rock, p: paper, s: scissor: ")
+            if user in moves:
+                break
+            else:
+                print("Wrong input try again")
+                
         if user == computer:
             print("Tie!")
+            i += 1
         elif check_win(user, computer):
             print("You Win!")
             user_score += 1
         else:
             print("You Loose!")
             computer_score += 1
+        i -= 1
     return computer_score, user_score
 
 if __name__ == "__main__":
